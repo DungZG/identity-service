@@ -3,6 +3,7 @@ package com.devteria.identity_service.controller;
 import com.devteria.identity_service.dto.Request.UserCreationRequest;
 import com.devteria.identity_service.dto.Request.UserUpdateRequest;
 import com.devteria.identity_service.entity.User;
+import com.devteria.identity_service.repository.UserRepository;
 import com.devteria.identity_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping
     public User createUser(@RequestBody UserCreationRequest request) {
@@ -28,7 +31,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable String id) {
-        return userService.getUser(id);
+        return userRepository.findById(id).orElseThrow(
+                ()-> new RuntimeException("Could not find user"));
     }
 
     @PutMapping("/{userId}")
