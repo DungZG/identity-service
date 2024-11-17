@@ -5,6 +5,7 @@ import com.devteria.identity_service.dto.Request.UserUpdateRequest;
 import com.devteria.identity_service.entity.User;
 import com.devteria.identity_service.repository.UserRepository;
 import com.devteria.identity_service.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping
-    public User createUser(@RequestBody UserCreationRequest request) {
+    public User createUser(@RequestBody @Valid UserCreationRequest request) {
+
         return userService.createUser(request);
     }
 
