@@ -3,7 +3,7 @@ package com.devteria.identity_service.dto.Request;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Data
 @Builder
